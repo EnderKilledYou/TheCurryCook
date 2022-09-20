@@ -1,9 +1,8 @@
 using Funq;
 using ServiceStack;
-using Aria.ServiceInterface;
+using Aria.ServiceInterface; 
 
 [assembly: HostingStartup(typeof(Aria.AppHost))]
-
 namespace Aria;
 
 public class AppHost : AppHostBase, IHostingStartup
@@ -22,7 +21,7 @@ public class AppHost : AppHostBase, IHostingStartup
             "https://" + Environment.GetEnvironmentVariable("DEPLOY_CDN")
         }, allowCredentials: true));
     }
-
+ 
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices((context, services) => 
             services.ConfigureNonBreakingSameSiteCookies(context.HostingEnvironment));

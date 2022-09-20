@@ -12,8 +12,8 @@ namespace Aria.ServiceModel.Types.Players.Server
         GuidHoarder<IGame> Games { get; set; }
         GuidHoarder<ILobby> Lobbies { get; set; }
 
-        Task OnConnect();
-        Task OnDisconnect();
-        Task OnReconnect();
+        Task OnConnected(string connectionId);
+        Task OnDisconnect(bool stopCalled);
+        Task OnReconnect(string connectionId);
     }
 }

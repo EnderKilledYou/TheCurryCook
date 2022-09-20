@@ -11,6 +11,5 @@ public interface IPlayerClient
     Task SetLevel(IGameLevel level);
     Task SetGameState(IGameRenderState state);
     Task SetTurn(IPlayerTurn turn);
-
-
+    Task SendClientError(string v);
 }

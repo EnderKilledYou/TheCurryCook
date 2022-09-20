@@ -2,6 +2,7 @@ using Ender;
 using Microsoft.AspNetCore.Hosting;
 using ServiceStack;
 using ServiceStack.Auth;
+using ServiceStack.Configuration;
 using ServiceStack.FluentValidation;
 
 [assembly: HostingStartup(typeof(Aria.ConfigureAuth))]
@@ -36,16 +37,10 @@ public class ConfigureAuth : IHostingStartup
             var appSettings = appHost.AppSettings;
             appHost.Plugins.Add(new AuthFeature(() => new CustomUserSession(),
                 new IAuthProvider[] {
-                    new JwtAuthProvider(appSettings) {
-                        AuthKeyBase64 = appSettings.GetString("AuthKeyBase64") ?? "cARl12kvS/Ra4moVBIaVsrWwTpXYuZ0mZf/gNLUhDW5=",
-                    },
-                    new CredentialsAuthProvider(appSettings),     /* Sign In with Username / Password credentials */
-                    new TwitchOauthProvider(appSettings),        /* Create App https://developers.facebook.com/apps */
-                    
-                })
-            {
-                IncludeDefaultLogin = false
-            });
+
+                     new TwitchOauthProvider(appSettings) }
+                )
+             );
 
             appHost.Plugins.Add(new RegistrationFeature()); //Enable /register Service
 

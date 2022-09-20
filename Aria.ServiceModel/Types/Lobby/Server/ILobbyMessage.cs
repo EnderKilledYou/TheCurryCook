@@ -3,4 +3,8 @@
     public interface ILobbyMessage
     {
     }
+    public interface IChannelMessage
+    {
+
+    }
 }

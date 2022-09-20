@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Aria.ServiceModel.Types.Game.Server;
 using Aria.ServiceModel.Types.Players.Server;
 
 namespace Aria.ServiceModel.Types.Players;

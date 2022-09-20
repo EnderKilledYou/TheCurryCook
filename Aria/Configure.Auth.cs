@@ -1,3 +1,4 @@
+using Ender;
 using Microsoft.AspNetCore.Hosting;
 using ServiceStack;
 using ServiceStack.Auth;
@@ -10,6 +11,7 @@ namespace Aria;
 // Add any additional metadata properties you want to store in the Users Typed Session
 public class CustomUserSession : AuthUserSession
 {
+    public object? TwitchUserId { get; internal set; }
 }
 
 // Custom Validator to add custom validators to built-in /register Service requiring DisplayName and ConfirmPassword
@@ -38,9 +40,8 @@ public class ConfigureAuth : IHostingStartup
                         AuthKeyBase64 = appSettings.GetString("AuthKeyBase64") ?? "cARl12kvS/Ra4moVBIaVsrWwTpXYuZ0mZf/gNLUhDW5=",
                     },
                     new CredentialsAuthProvider(appSettings),     /* Sign In with Username / Password credentials */
-                    new FacebookAuthProvider(appSettings),        /* Create App https://developers.facebook.com/apps */
-                    new GoogleAuthProvider(appSettings),          /* Create App https://console.developers.google.com/apis/credentials */
-                    new MicrosoftGraphAuthProvider(appSettings),  /* Create App https://apps.dev.microsoft.com */
+                    new TwitchOauthProvider(appSettings),        /* Create App https://developers.facebook.com/apps */
+                    
                 })
             {
                 IncludeDefaultLogin = false
